@@ -1,0 +1,25 @@
+--Wild cards are a way of defining different patterns that we want to match specific pieces of data to
+--this is way to grab data that matches a specific pattern
+--&=any # character, _ = one character used with LIKE
+
+--Find any client who are in LLC using wild cards
+--LIKE is special keyword used with wildards
+SELECT * 
+FROM client
+WHERE client_name LIKE '%LLC';
+--Find any branch suppliers who are in the labels business
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '%Label%';
+--Find any employee born in october
+SELECT * 
+FROM employee
+WHERE birth_day LIKE '____-10%';
+--Find any employee born in February
+SELECT * 
+FROM employee
+WHERE birth_day LIKE '____-02%';
+--Find any clients who are schools
+SELECT * 
+FROM client
+WHERE client_name LIKE '%school%';
