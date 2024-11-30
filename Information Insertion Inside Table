@@ -1,0 +1,100 @@
+--INSERTING DATA INTO THE TABLES HAS TO BE DONE IN
+--A CERTAIN WAY DUE TO THE FOREIGN KEY RELATIONS
+
+-- INSERING EMPLOYEE AND BRANCH ENTRIES INTO THE
+--COOPORATE BRANCH
+--EMPLOYEE TABLE AND BRANCH TABLES HAVE FOREGIN KEYS THTA POINT OT EACH OTHER
+
+-- employee table has branch id which points to a specific branch
+--each nranch has a coloumn which points to a specific employee
+
+--cooporate table
+--david wallace should belong to the cooporate branch_id(1)
+--but the problem is the cooporate branch hasnt been created yet
+
+--cooporate table
+INSERT INTO employee VALUES(100,'David','Wallace','1967-11-17','M',250000,NULL,NULL);
+
+--then we insert the branch into the branch table
+INSERT INTO branch VALUES(1,'Cooporate',100,'2006-02-09');
+
+--updating david wallace to say that he works for the cooporate branch
+UPDATE employee
+SET branch_id=1
+WHERE emp_id=100;
+
+--insering the last employee into the cooporatte branch
+INSERT INTO employee VALUES(101,'Jan','Levinson','1961-05-11','F',110000,100,1);
+
+--SCRANTO BRANCH TABLE
+INSERT INTO employee VALUES(102,'Micheal','Scott','1964-03-15','M',75000,100,NULL);
+
+--CREATING SCRANTON BRANCH
+INSERT INTO branch VALUES(2,'Scranton',102,'1992-04-06');
+
+--UPADATING MICHEAL SCOTT TO SAY THAT HE WORKS AT THE SCRAANTON BRANCH
+UPDATE employee
+SET branch_id=2
+WHERE emp_id =102;
+
+--other scranton branch employees
+INSERT INTO employee VALUES(103,'Angela','Martin','1971-06-25','F',63000,102,2);
+INSERT INTO employee VALUES(104,'Kelly','Kapoor','1980-02-05','F',55000,102,2);
+INSERT INTO employee VALUES(105,'Stanley','Hudson','1958-02-19','M',69000,102,2);
+
+--STANDFORD BRANCH
+--INSERTING MANAGER OF STANDFORD BRANCH
+INSERT INTO employee VALUES(106,'Josh','Porter','1969-09-05','M',78000,100,NULL);
+
+--CREATING THE STANDFORD BRANCH
+INSERT INTO branch VALUES(3,'Stamford',106,'1998-02-13');
+
+--UPDATING JOSH TO SAY HE WORKS FOR STAMFORD BRANCH
+
+UPDATE employee
+SET branch_id=3
+WHERE emp_id=106;
+
+--UPDATING OTHER STAMFROD BRANCH EMPLOYEES
+INSERT INTO employee VALUES(107,'Andy','Bernard','1973-07-22','M',65000,106,3);
+INSERT INTO employee VALUES(108,'Stanley','Hudson','1958-02-19','M',71000,106,3);
+
+
+SELECT * FROM branch_supplier;
+
+--Inserting for Branch_supplier table
+
+INSERT INTO branch_supplier VALUES(2,'Hammer Mill','Paper');
+INSERT INTO branch_supplier VALUES(2,'Uni-ball','Utensils');
+INSERT INTO branch_supplier VALUES(3,'Patroit Paper','Paper');
+INSERT INTO branch_supplier VALUES(2,'J.T Forms & Labels','Custom Forms');
+INSERT INTO branch_supplier VALUES(3,'Uni-ball','Writing Utensils');
+INSERT INTO branch_supplier VALUES(3,'Hammer Mill','Paper');
+INSERT INTO branch_supplier VALUES(3,'Standford Lables','Custom Forms');
+
+--Inserting into client table
+INSERT INTO client VALUES(400,'Dunmore Highschool',2);
+INSERT INTO client VALUES(401,'Lackawana Country',2);
+INSERT INTO client VALUES(402,'FedEx',3);
+INSERT INTO client VALUES(403,'John Daly Law, LLC',3);
+INSERT INTO client VALUES(404,'Scranton Whitepages',2);
+INSERT INTO client VALUES(405,'Times Newspaper',3);
+INSERT INTO client VALUES(406,'FedEx',2);
+
+--Insert Works With Table
+INSERT INTO works_with VALUES(105,400,55000);
+INSERT INTO works_with VALUES(102,401,267000);
+INSERT INTO works_with VALUES(108,402,22500);
+INSERT INTO works_with VALUES(107,403,5000);
+INSERT INTO works_with VALUES(108,403,12000);
+INSERT INTO works_with VALUES(105,404,33000);
+INSERT INTO works_with VALUES(107,405,26000);
+INSERT INTO works_with VALUES(102,406,15000);
+INSERT INTO works_with VALUES(105,406,130000);
+
+--viewing employees table
+SELECT * FROM employee;
+SELECT * FROM works_with;
+SELECT * FROM branch;
+SELECT * FROM branch_supplier;
+SELECT * FROM client;
