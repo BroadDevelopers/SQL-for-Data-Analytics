@@ -1,0 +1,27 @@
+--Join are used to combine two or more rows from two or more tables based on a related coloumn between them
+--are useful for combining information from different tables into a single result which we can use to find specific information stored in our database
+INSERT INTO branch VALUES(4,'Buffalo',NULL,NULL);
+SELECT * FROM branch;
+
+--Find all branches and the names of their managers
+--normal join
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+JOIN branch
+ON employee.emp_id = branch.mgr_id;
+--4 types of joins
+--General join(Inner Join) combines rows from the branch table and employee table wheen they have a shared coloumn in common
+--LEFT Join
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+LEFT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+--All the employees are included, WHY? Left join all the rows from the left row are included(employee), Left table is the "from employee" statement
+-- Inner Join only employees that are managers are included because the bracnh table is the right table
+--Right Join includes all the rows from the branch table
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+RIGHT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+--Last Join(Full Outter Join-Right and LEft join Combined no matter if the ON statement in met or not)
+
