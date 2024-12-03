@@ -1,0 +1,36 @@
+--NESTED QUERY is a query where were going to use multiple select statement in order to get a specific piece of information
+--Alot of times were gonna want to get very specific information and were gonna want to use the results of one select statement to inform the result of amother select statement
+
+--Find names of all employees of have sold more than 30,000 to singlr client
+SELECT employee.first_name, employee.last_name
+FROM employee
+WHERE employee.emp_id IN(
+  SELECT works_with.emp_id
+  FROM works_with
+  WHERE total_sales_>30000
+);
+
+
+SELECT works_with.emp_id
+FROM works_with
+WHERE total_sales_>30000;
+
+--Find all clients whi are handke by the branch that micheal scott handles
+--Assume you know micheal scotts id
+--WHICH BRANCH MICHEAL SCOTT MANAGES
+SELECT client.client_name
+FROM client
+WHERE client.branch_id=(
+    SELECT branch.branch_id
+    FROM branch
+    WHERE branch.mgr_id=102
+    LIMIT 1
+);
+
+
+SELECT branch.branch_id
+FROM branch
+WHERE branch.mgr_id=102;
+--WE CAN FIGURE OUT THE CLIENTS THAT USE THAT BRANCH ID
+--THE BRANCH ID WILL MAP US TO THE CLIENT TABLE
+
